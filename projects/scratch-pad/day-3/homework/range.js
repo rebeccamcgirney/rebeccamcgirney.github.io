@@ -23,6 +23,21 @@
  */
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
+    //function w/ two params that are both integers
+    let array = [];
+    //create new array for output
+    for(let i = start; i <= end; i++){
+    //create a for loop with start and end values and increment
+      array.push(i);
+      //use push method to push values into array
+    }
+    for(let i = start; i >= end; i--){
+   //create a for loop with start and end values and decrement
+      array.push(i);
+      //use push method to push values into array
+    }
+    return array;
+    //return the new array
     
     
     

@@ -13,8 +13,13 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
+    return function(value){
+        if(value > base){
+        return true;
+    }else{
+        return false;
+    }
+    };
     
     
     // YOUR CODE ABOVE HERE //
@@ -27,9 +32,13 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+        return function(value){
+        if(value < base){
+        return true;
+    }else{
+        return false;
+    }
+    };
     
     // YOUR CODE ABOVE HERE //
 }
@@ -41,8 +50,18 @@ function createLessThanFilter(base) {
  */
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-    
-    
+    //function w/ single char param
+        return function(str){
+        //return function that tests if given string starts w/ char
+        if(str[0].toUpperCase() === startsWith.toUpperCase()){
+            //if string index 0 is equal to the single char
+            return true;
+            //return true
+        }else{
+            return false;
+            //otherwise return false
+        }
+    };
     
     
     // YOUR CODE ABOVE HERE //
@@ -55,7 +74,18 @@ function createStartsWithFilter(startsWith) {
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
-    
+    //function w/ single char param
+        return function(str){
+        //return function that tests if given string ends w/ char
+        if(str[str.length - 1].toUpperCase() === endsWith.toUpperCase()){
+            //if last index of string is equal to the single char
+            return true;
+            //return true
+        }else{
+            return false;
+            //otherwise return false
+        }
+    };
     
     
     
@@ -71,8 +101,15 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
-    
+    let array = [];
+    //create an array for the output
+    for(let i = 0; i < strings.length; i++ ){
+    //loop thru the array of strings
+    array.push(modify(strings[i].toUpperCase()));
+    //push the values into the array
+    }
+    return array;
+    //return array
     
     
     // YOUR CODE ABOVE HERE //
@@ -89,7 +126,12 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
+    for(let i = 0; i < strings.length; i++){
+        if(test(strings[i]) === false){
+            return false;
+        }
+    }
+            return true;
     
     
     

@@ -14,6 +14,15 @@
  */
 function isArray(value) {
     // YOUR CODE BELOW HERE //
+    if(Array.isArray(value)){
+        //if array is an array
+        return true;
+        //return true
+    }else{
+        return false;
+        //otherwise return false
+    }
+    
     
     
     
@@ -32,7 +41,22 @@ function isArray(value) {
 function isObject(value) {
     // YOUR CODE BELOW HERE //
     
-    
+    if(Array.isArray(value)){
+        return false;
+        //if array, return false
+    }else if(value === null){
+        return false;
+        //if null, return false
+    }else if (value instanceof Date){
+        return false;
+        //if value is date object, return false
+    }else if(typeof value === 'object'){
+        return true;
+        //if object, return true
+    }else{
+        return false;
+        //otherwise return false
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -46,9 +70,18 @@ function isObject(value) {
  */
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+    //just like isObject, but return true if array
+    if(Array.isArray(value)) {
+    return true;
+} else if(value === null) {
+    return false;
+} else if(value instanceof Date) {
+    return false;
+} else if(typeof value === 'object') {
+    return true;
+} else {
+    return false;
+}
     
     // YOUR CODE ABOVE HERE //
 }
@@ -74,7 +107,23 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
+    /* using input values, return type of value as string.
+    * use an if statement, use Array.isArray to test if array first,
+    * then move onto other types that don't work well w/ typeof operator, null and date.
+    * the rest should default using typeof value.
+    */
     
+   if(Array.isArray(value)){
+       return "array"; 
+   } else if(value === null){
+       return "null";
+   } else if(value instanceof Date){
+       return "date";
+   }
+   
+   
+   return typeof value  
+   
     
     
     
