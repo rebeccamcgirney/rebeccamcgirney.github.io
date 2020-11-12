@@ -31,12 +31,12 @@
 * in a statement or used in an expression.
  */
  
-function multiply(num1, num2) { // declaring function 
+function multiply(num1, num2) { // declaring function w/ parameters
   return num1 * num2;
 }
-multiply(3,4);  // returns 12 // invoking function
-multiply(4,5); // returns 20 // invoking function
-multiply(5,6); // returns 30 // invoking function
+multiply(3,4);  // returns 12 // invoking function w/ arguments
+multiply(4,5); // returns 20 // invoking function w/ arguments
+multiply(5,6); // returns 30 // invoking function w/ arguments
 
 // 2. ANONYMOUS FUNCTION //
 
