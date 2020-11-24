@@ -175,6 +175,18 @@ _.contains = function(array, value){
 *      -> should log "a" "b" "c" to the console
 */
 
+_.each = function(collection, func){
+    if(Array.isArray(collection)){
+      for(let i = 0; i < collection.length; i++){
+        func(collection[i], i, collection);
+      }
+    }else if(typeof collection === 'object'){
+      for(let key in collection){
+        func(collection[key], key, collection);
+      }
+                
+   }
+};
 
 /** _.unique
 * Arguments:
@@ -186,6 +198,9 @@ _.contains = function(array, value){
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+_.unique = function(array){
+ return array.filter((a,b) => array.indexOf(a) === b);    
+};
 
 /** _.filter
 * Arguments:
@@ -203,6 +218,16 @@ _.contains = function(array, value){
 *   use _.each in your implementation
 */
 
+_.filter = function(array, func){
+let newArr = [];
+_.each(array, function(e, i, array){
+let result = func(e, i, array);
+if(result === true){
+newArr.push(e);
+}
+});
+  return newArr; 
+};
 
 /** _.reject
 * Arguments:
@@ -217,6 +242,16 @@ _.contains = function(array, value){
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
+_.reject = function(array, func){
+let newArr = [];
+_.each(array, function(e, i, array){
+let result = func(e, i, array);
+if(result === false){
+newArr.push(e);
+}
+});
+  return newArr; 
+};
 
 /** _.partition
 * Arguments:
@@ -237,6 +272,10 @@ _.contains = function(array, value){
 }
 */
 
+_.partition = function(array, func){
+return [_.filter(array,func), _.reject(array,func)];
+};
+
 
 /** _.map
 * Arguments:
@@ -254,6 +293,22 @@ _.contains = function(array, value){
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(collection, func){
+let newArr = [];
+_.each(collection, function(e, i, collection){
+newArr.push(func(e, i, collection));
+});
+return newArr;
+};
+
+
+//   let array = [];
+//  for(let i = 0; i <= collection.length; i++){
+// func(collection[i]);
+// array.push(func(collection[i]));
+//  }
+// return array; 
+// };
 
 /** _.pluck
 * Arguments:
@@ -266,6 +321,13 @@ _.contains = function(array, value){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+_.pluck = function(array, property){
+let newArr = [];
+_.map(array, function(e, i, array){
+newArr.push(e[property]);
+});
+return newArr;
+};
 
 /** _.every
 * Arguments:
@@ -287,6 +349,28 @@ _.contains = function(array, value){
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
+_.every = function(collection, func){
+      // function w/ collection and function as parameters
+    let result = true;
+    // assign true to result
+    _.each(collection, function(e, i, collection){
+        //implement .each
+        if (typeof func === "function"){
+            //if function exists
+            if(!func(e ,i, collection)){
+                //
+            result = false;
+            //return false
+            }
+        }else if ( !e ){
+            //
+          result = false;
+          //return false
+        }
+    });
+   return result;
+   // return result
+};
 
 
 /** _.some
@@ -310,7 +394,21 @@ _.contains = function(array, value){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
-
+_.some = function(collection, func){
+    let result = false;
+    _.each(collection, function(e, i, collection){
+        if(typeof func !== "function"){
+            if (e){
+            result = true;
+            }
+        }
+        else if(func(e, i, collection)){
+            result = true;
+        }
+    });
+    return result;
+    //
+};
 /** _.reduce
 * Arguments:
 *   1) An array
@@ -330,7 +428,24 @@ _.contains = function(array, value){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
-
+_.reduce = function(arr, func, seed){
+    if(seed !== undefined){
+            let result = seed;
+     _.each(arr, function(e, i, array) {
+         result = func(result, e, i);
+     });
+        return result;
+    }else{
+        let result = arr[0];
+        _.each(arr, function(e, i, array) {
+            if (i !== 0){
+                result = func(result, e, i, array);
+            }
+        });
+        return result;
+    }
+};
+ 
 /** _.extend
 * Arguments:
 *   1) An Object
@@ -345,6 +460,10 @@ _.contains = function(array, value){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+ _.extend = function(obj1, obj2){
+   return Object.assign(...arguments);
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
