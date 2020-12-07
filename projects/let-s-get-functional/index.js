@@ -210,7 +210,7 @@ var topThreeTags = function(array){
   //use object.entries to create array of key value pairs
   let finalArray = arrayList.sort(function(a,b){
   //create a new array for final ouput
-  //sort thru the elements of the array in order
+  //sort thru the elements of the array in descending order
   return b[1] - a[1];
   //return the difference 
   }).splice(0,3);
