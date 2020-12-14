@@ -59,8 +59,25 @@ for(let i = 1; i <= 15; i++){
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
-
+function drawChessboard(size) {
+/* Write a program that creates a string that represents an 8×8 grid.
+* Use newline characters to separate lines. 
+* At each position of the grid there is either a space or a "#" character. 
+* The characters should form a chessboard.
+*/
+//let size = 8; => don't declare specific size as we want to account for any #
+let board = "";
+for(let i = 0; i < size; i++){
+  for(let j = 0; j < size; j++){
+    if((i + j) % 2 === 0){
+      board += " ";
+} else {
+    board += "#";
+}
+}
+board += "\n";
+}
+console.log(board);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

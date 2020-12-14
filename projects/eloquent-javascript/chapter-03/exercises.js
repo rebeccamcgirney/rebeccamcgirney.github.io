@@ -25,8 +25,25 @@ function min(num1, num2){
 //Define a recursive function isEven corresponding to this description. 
 //The function should accept a single parameter (a positive, whole number) and return a Boolean.
 //Test it on 50 and 75. See how it behaves on -1. Why? Can you think of a way to fix this?
-function isEven() {
-
+function isEven(n){
+  //function w/ single num param (positive whole num)
+if(n === 0){
+  //if n is equal to 0
+  return true;
+  //return true
+}else if(n === 1){
+  //if n is equal to 1 
+  return false;
+  //return false
+}else if(n < 0){
+  //if n is less than 0 (neg)
+  return isEven(-n);
+  //return -n
+}else{
+  //otherwise
+  return isEven(n-2);
+  //return n-2 recursively
+}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
